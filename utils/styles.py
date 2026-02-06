@@ -12,14 +12,60 @@ def inject_custom_css():
         background: linear-gradient(135deg, #fefefe 0%, #f5f5f0 100%);
     }
 
-    /* Sidebar */
+    /* ==================== SIDEBAR - ALWAYS VISIBLE ==================== */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #ffffff 0%, #f8f6f0 100%);
-        border-right: 1px solid #e0ddd5;
+        border-right: 2px solid #e0ddd5;
+        min-width: 280px !important;
+        width: 280px !important;
+    }
+    
+    /* Keep sidebar expanded */
+    [data-testid="stSidebar"][aria-expanded="false"] {
+        min-width: 280px !important;
+        width: 280px !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Hide collapse button */
+    [data-testid="stSidebar"] button[kind="header"] {
+        display: none !important;
+    }
+    
+    /* Sidebar navigation links */
+    [data-testid="stSidebar"] [data-testid="stSidebarNav"] {
+        padding-top: 1rem;
+    }
+    
+    [data-testid="stSidebar"] [data-testid="stSidebarNav"] a {
+        background-color: transparent !important;
+        color: #333333 !important;
+        border-radius: 8px !important;
+        margin: 4px 8px !important;
+        padding: 10px 16px !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    [data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {
+        background-color: rgba(230, 126, 34, 0.1) !important;
+        color: #d35400 !important;
+    }
+    
+    [data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-selected="true"] {
+        background-color: rgba(230, 126, 34, 0.15) !important;
+        color: #d35400 !important;
+        font-weight: 600 !important;
+        border-left: 3px solid #e67e22 !important;
     }
     
     [data-testid="stSidebar"] [data-testid="stMarkdown"] {
         color: #333333;
+    }
+    
+    /* Sidebar content padding */
+    [data-testid="stSidebar"] > div:first-child {
+        padding-top: 1rem;
     }
 
     /* Headers */
