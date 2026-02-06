@@ -4,506 +4,483 @@ import streamlit as st
 def inject_custom_css():
     st.markdown("""
     <style>
-    /* ── Global ──────────────────────────────────────────────── */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
+    /* ==================== LIGHT THEME ==================== */
+    
+    /* Main app background - light cream/white */
     .stApp {
-        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #fefefe 0%, #f5f5f0 100%);
     }
-
-    /* ── Cards ────────────────────────────────────────────────── */
-    .card {
-        background: linear-gradient(135deg, #1a1d23 0%, #22262e 100%);
-        border: 1px solid rgba(255, 107, 53, 0.15);
+    
+    /* Sidebar - soft warm white */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #ffffff 0%, #f8f6f0 100%);
+        border-right: 1px solid #e0ddd5;
+    }
+    
+    [data-testid="stSidebar"] [data-testid="stMarkdown"] {
+        color: #333333;
+    }
+    
+    /* Headers - dark text for contrast */
+    h1, h2, h3, h4, h5, h6 {
+        color: #2c2c2c !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Regular text - dark gray */
+    p, span, label, .stMarkdown {
+        color: #333333 !important;
+    }
+    
+    /* ==================== CARDS & CONTAINERS ==================== */
+    
+    /* Recipe cards - white with subtle shadow */
+    .recipe-card {
+        background: #ffffff;
         border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e8e5de;
         transition: all 0.3s ease;
+        color: #333333;
     }
-    .card:hover {
-        border-color: rgba(255, 107, 53, 0.4);
-        box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
-        transform: translateY(-2px);
+    
+    .recipe-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
-
-    .card-accent {
-        background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.05) 100%);
-        border: 1px solid rgba(255, 107, 53, 0.3);
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
+    
+    .recipe-card h3 {
+        color: #2c2c2c !important;
+        margin-bottom: 12px;
     }
-
-    .card-success {
-        background: linear-gradient(135deg, rgba(46,204,113,0.1) 0%, rgba(46,204,113,0.05) 100%);
-        border: 1px solid rgba(46, 204, 113, 0.3);
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
+    
+    .recipe-card p {
+        color: #555555 !important;
     }
-
-    .card-warning {
-        background: linear-gradient(135deg, rgba(241,196,15,0.1) 0%, rgba(241,196,15,0.05) 100%);
-        border: 1px solid rgba(241, 196, 15, 0.3);
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    /* ── Metrics ──────────────────────────────────────────────── */
+    
+    /* Metric cards */
     .metric-card {
-        background: linear-gradient(135deg, #1a1d23 0%, #22262e 100%);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 16px;
-        padding: 1.5rem;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
         text-align: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e8e5de;
     }
+    
     .metric-value {
         font-size: 2.5rem;
-        font-weight: 800;
-        color: #FF6B35;
-        line-height: 1;
-        margin-bottom: 0.3rem;
+        font-weight: 700;
+        color: #d35400 !important;
     }
+    
     .metric-label {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.85);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    .metric-delta {
-        font-size: 0.8rem;
-        margin-top: 0.3rem;
-    }
-    .metric-delta.positive { color: #2ecc71; }
-    .metric-delta.negative { color: #e74c3c; }
-
-    /* ── Roster Grid ───────────────────────────────────────────── */
-    .roster-cell {
-        background: #1a1d23;
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 12px;
-        padding: 0.8rem;
-        min-height: 80px;
-        transition: all 0.2s ease;
-    }
-    .roster-cell:hover {
-        border-color: rgba(255,107,53,0.3);
-    }
-    .roster-cell.assigned {
-        border-color: rgba(46,204,113,0.4);
-        background: linear-gradient(135deg, rgba(46,204,113,0.08) 0%, transparent 100%);
-    }
-    .roster-cell.empty {
-        border-style: dashed;
-        opacity: 0.6;
-    }
-    .roster-cell .chef-name {
-        font-weight: 600;
-        color: #fafafa;
+        color: #666666 !important;
         font-size: 0.9rem;
+        margin-top: 8px;
     }
-    .roster-cell .dish-name {
-        color: rgba(255,255,255,0.85);
-        font-size: 0.8rem;
-        margin-top: 0.2rem;
+    
+    /* ==================== BUTTONS ==================== */
+    
+    .stButton > button {
+        background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 12px 28px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 6px rgba(211, 84, 0, 0.3) !important;
     }
-
-    /* ── Badges / Achievements ───────────────────────────────── */
-    .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background: linear-gradient(135deg, rgba(255,107,53,0.15) 0%, rgba(255,107,53,0.05) 100%);
-        border: 1px solid rgba(255,107,53,0.3);
+    
+    .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4) !important;
+    }
+    
+    /* Secondary buttons */
+    .secondary-btn {
+        background: #f5f5f0 !important;
+        color: #333333 !important;
+        border: 1px solid #d0ccc0 !important;
+    }
+    
+    /* ==================== FORM ELEMENTS ==================== */
+    
+    /* Text inputs */
+    .stTextInput > div > div > input {
+        background-color: #ffffff !important;
+        border: 1px solid #d0ccc0 !important;
+        border-radius: 8px !important;
+        color: #333333 !important;
+        padding: 12px !important;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #e67e22 !important;
+        box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2) !important;
+    }
+    
+    .stTextInput > div > div > input::placeholder {
+        color: #999999 !important;
+    }
+    
+    /* Text areas */
+    .stTextArea > div > div > textarea {
+        background-color: #ffffff !important;
+        border: 1px solid #d0ccc0 !important;
+        border-radius: 8px !important;
+        color: #333333 !important;
+    }
+    
+    .stTextArea > div > div > textarea:focus {
+        border-color: #e67e22 !important;
+        box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2) !important;
+    }
+    
+    /* Select boxes */
+    .stSelectbox > div > div {
+        background-color: #ffffff !important;
+        border: 1px solid #d0ccc0 !important;
+        border-radius: 8px !important;
+        color: #333333 !important;
+    }
+    
+    .stSelectbox [data-baseweb="select"] {
+        background-color: #ffffff !important;
+    }
+    
+    .stSelectbox [data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        border-color: #d0ccc0 !important;
+        color: #333333 !important;
+    }
+    
+    /* Multiselect */
+    .stMultiSelect > div > div {
+        background-color: #ffffff !important;
+        border: 1px solid #d0ccc0 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stMultiSelect [data-baseweb="tag"] {
+        background-color: #e67e22 !important;
+        color: white !important;
+    }
+    
+    /* Number input */
+    .stNumberInput > div > div > input {
+        background-color: #ffffff !important;
+        border: 1px solid #d0ccc0 !important;
+        border-radius: 8px !important;
+        color: #333333 !important;
+    }
+    
+    /* Sliders */
+    .stSlider > div > div > div > div {
+        background-color: #e67e22 !important;
+    }
+    
+    /* Checkboxes */
+    .stCheckbox > label > span {
+        color: #333333 !important;
+    }
+    
+    /* Radio buttons */
+    .stRadio > label > span {
+        color: #333333 !important;
+    }
+    
+    /* ==================== DATA DISPLAY ==================== */
+    
+    /* Dataframes */
+    .stDataFrame {
+        background-color: #ffffff !important;
+        border-radius: 8px !important;
+        overflow: hidden;
+        border: 1px solid #e8e5de !important;
+    }
+    
+    .stDataFrame [data-testid="stDataFrameResizable"] {
+        background-color: #ffffff !important;
+    }
+    
+    /* Tables */
+    .stTable {
+        background-color: #ffffff !important;
+    }
+    
+    .stTable th {
+        background-color: #f8f6f0 !important;
+        color: #333333 !important;
+    }
+    
+    .stTable td {
+        color: #333333 !important;
+        border-bottom: 1px solid #e8e5de !important;
+    }
+    
+    /* ==================== EXPANDERS ==================== */
+    
+    .streamlit-expanderHeader {
+        background-color: #ffffff !important;
+        border: 1px solid #e8e5de !important;
+        border-radius: 8px !important;
+        color: #333333 !important;
+        font-weight: 500 !important;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        background-color: #f8f6f0 !important;
+    }
+    
+    .streamlit-expanderContent {
+        background-color: #ffffff !important;
+        border: 1px solid #e8e5de !important;
+        border-top: none !important;
+        border-radius: 0 0 8px 8px !important;
+    }
+    
+    /* ==================== TABS ==================== */
+    
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: transparent;
+        gap: 8px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: #f5f5f0 !important;
+        color: #666666 !important;
+        border-radius: 8px 8px 0 0 !important;
+        border: 1px solid #e8e5de !important;
+        border-bottom: none !important;
+        padding: 10px 20px !important;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #ffffff !important;
+        color: #e67e22 !important;
+        font-weight: 600 !important;
+    }
+    
+    .stTabs [data-baseweb="tab-panel"] {
+        background-color: #ffffff !important;
+        border: 1px solid #e8e5de !important;
+        border-radius: 0 8px 8px 8px !important;
+        padding: 20px !important;
+    }
+    
+    /* ==================== ALERTS & MESSAGES ==================== */
+    
+    .stSuccess {
+        background-color: #d4edda !important;
+        border: 1px solid #28a745 !important;
+        color: #155724 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stInfo {
+        background-color: #d1ecf1 !important;
+        border: 1px solid #17a2b8 !important;
+        color: #0c5460 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stWarning {
+        background-color: #fff3cd !important;
+        border: 1px solid #ffc107 !important;
+        color: #856404 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stError {
+        background-color: #f8d7da !important;
+        border: 1px solid #dc3545 !important;
+        color: #721c24 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* ==================== CUSTOM COMPONENTS ==================== */
+    
+    /* Day cards for meal planning */
+    .day-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 16px;
+        margin: 8px 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid #e67e22;
+        border-right: 1px solid #e8e5de;
+        border-top: 1px solid #e8e5de;
+        border-bottom: 1px solid #e8e5de;
+    }
+    
+    .day-card h4 {
+        color: #e67e22 !important;
+        margin-bottom: 8px;
+    }
+    
+    .day-card p {
+        color: #555555 !important;
+    }
+    
+    /* Ingredient tags */
+    .ingredient-tag {
+        display: inline-block;
+        background: #fef5e7;
+        color: #d35400 !important;
+        padding: 4px 12px;
         border-radius: 20px;
-        padding: 0.3rem 0.8rem;
+        margin: 4px;
+        font-size: 0.85rem;
+        border: 1px solid #f5d5a0;
+    }
+    
+    /* Category badges */
+    .category-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+        color: white !important;
+        padding: 4px 16px;
+        border-radius: 20px;
         font-size: 0.8rem;
         font-weight: 500;
-        color: #FF6B35;
-        margin: 0.2rem;
     }
-    .badge.gold {
-        background: linear-gradient(135deg, rgba(241,196,15,0.2) 0%, rgba(241,196,15,0.05) 100%);
-        border-color: rgba(241,196,15,0.4);
-        color: #f1c40f;
-    }
-    .badge.silver {
-        background: linear-gradient(135deg, rgba(189,195,199,0.2) 0%, rgba(189,195,199,0.05) 100%);
-        border-color: rgba(189,195,199,0.4);
-        color: #bdc3c7;
-    }
-    .badge.bronze {
-        background: linear-gradient(135deg, rgba(205,127,50,0.2) 0%, rgba(205,127,50,0.05) 100%);
-        border-color: rgba(205,127,50,0.4);
-        color: #cd7f32;
-    }
-
-    /* ── Recipe Card ───────────────────────────────────────────── */
-    .recipe-card {
-        background: linear-gradient(135deg, #1a1d23 0%, #22262e 100%);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 16px;
-        padding: 1.2rem;
-        margin-bottom: 0.8rem;
-        transition: all 0.3s ease;
-    }
-    .recipe-card:hover {
-        border-color: rgba(255,107,53,0.3);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    }
-    .recipe-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #fafafa;
-        margin-bottom: 0.3rem;
-    }
-    .recipe-meta {
-        display: flex;
-        gap: 1rem;
-        color: rgba(255,255,255,0.75);
-        font-size: 0.8rem;
-        margin-bottom: 0.5rem;
-    }
-    .recipe-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-    }
-
-    /* ── Tags ───────────────────────────────────────────────────── */
-    .tag {
-        display: inline-block;
-        background: rgba(255,107,53,0.1);
-        border: 1px solid rgba(255,107,53,0.2);
-        border-radius: 12px;
-        padding: 0.15rem 0.6rem;
-        font-size: 0.75rem;
-        color: #FF6B35;
-    }
-    .tag.dietary {
-        background: rgba(46,204,113,0.1);
-        border-color: rgba(46,204,113,0.2);
-        color: #2ecc71;
-    }
-
-    /* ── Star Rating ───────────────────────────────────────────── */
-    .stars {
-        color: #f1c40f;
-        font-size: 1.2rem;
-        letter-spacing: 2px;
-    }
-    .stars-small {
-        color: #f1c40f;
-        font-size: 0.9rem;
-    }
-
-    /* ── Chat Messages ─────────────────────────────────────────── */
-    .chat-message {
-        background: #1a1d23;
-        border-radius: 12px;
-        padding: 0.8rem 1rem;
-        margin-bottom: 0.5rem;
-        border-left: 3px solid #FF6B35;
-    }
-    .chat-message .author {
-        font-weight: 600;
-        font-size: 0.85rem;
-        color: #FF6B35;
-    }
-    .chat-message .time {
-        font-size: 0.7rem;
-        color: rgba(255,255,255,0.65);
-    }
-    .chat-message .text {
-        color: #fafafa;
-        margin-top: 0.3rem;
-        font-size: 0.9rem;
-    }
-
-    /* ── Leaderboard ───────────────────────────────────────────── */
-    .leaderboard-row {
-        display: flex;
+    
+    /* Time badges */
+    .time-badge {
+        display: inline-flex;
         align-items: center;
-        gap: 1rem;
-        padding: 0.8rem 1rem;
-        border-radius: 12px;
-        margin-bottom: 0.5rem;
-        background: #1a1d23;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    .leaderboard-row.first {
-        background: linear-gradient(135deg, rgba(241,196,15,0.12) 0%, transparent 100%);
-        border-color: rgba(241,196,15,0.3);
-    }
-    .leaderboard-row.second {
-        background: linear-gradient(135deg, rgba(189,195,199,0.1) 0%, transparent 100%);
-        border-color: rgba(189,195,199,0.2);
-    }
-    .leaderboard-row.third {
-        background: linear-gradient(135deg, rgba(205,127,50,0.1) 0%, transparent 100%);
-        border-color: rgba(205,127,50,0.2);
-    }
-    .rank {
-        font-size: 1.5rem;
-        font-weight: 800;
-        width: 2.5rem;
-        text-align: center;
-    }
-    .rank.gold { color: #f1c40f; }
-    .rank.silver { color: #bdc3c7; }
-    .rank.bronze { color: #cd7f32; }
-
-    /* ── Reactions ──────────────────────────────────────────────── */
-    .reactions {
-        display: flex;
-        gap: 0.3rem;
-        flex-wrap: wrap;
-    }
-    .reaction-btn {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: #f0f0eb;
+        color: #666666 !important;
+        padding: 4px 12px;
         border-radius: 20px;
-        padding: 0.2rem 0.6rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .reaction-btn:hover {
-        background: rgba(255,107,53,0.15);
-        border-color: rgba(255,107,53,0.3);
-    }
-
-    /* ── Progress Bar Override ────────────────────────────────── */
-    .stProgress > div > div > div {
-        background: linear-gradient(90deg, #FF6B35, #ff8c5a);
-        border-radius: 10px;
-    }
-
-    /* ── Activity Feed ─────────────────────────────────────────── */
-    .activity-item {
-        display: flex;
-        gap: 0.8rem;
-        padding: 0.6rem 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
         font-size: 0.85rem;
+        border: 1px solid #d0ccc0;
     }
-    .activity-icon {
-        font-size: 1.2rem;
-        width: 2rem;
-        text-align: center;
-    }
-    .activity-text {
-        color: rgba(255,255,255,0.9);
-        flex: 1;
-    }
-    .activity-time {
-        color: rgba(255,255,255,0.65);
-        font-size: 0.75rem;
-        white-space: nowrap;
-    }
-
-    /* ── Swap Card ──────────────────────────────────────────────── */
-    .swap-card {
-        background: linear-gradient(135deg, rgba(155,89,182,0.1) 0%, transparent 100%);
-        border: 1px solid rgba(155,89,182,0.3);
-        border-radius: 12px;
-        padding: 1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    /* ── Stat Number ───────────────────────────────────────────── */
-    .stat-big {
-        font-size: 3rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #FF6B35, #ff8c5a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1.1;
-    }
-
-    /* ── Buttons ──────────────────────────────────────────────── */
-    .stButton > button {
-        border-radius: 12px;
-        font-weight: 600;
-        transition: all 0.2s ease;
-    }
-    .stButton > button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255,107,53,0.3);
-    }
-
-    /* ── Sidebar ──────────────────────────────────────────────── */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0E1117 0%, #151920 100%);
-    }
-
-    /* ── Tabs ───────────────────────────────────────────────────── */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 0.5rem;
-    }
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 12px 12px 0 0;
-        padding: 0.5rem 1.5rem;
-    }
-
-    /* ── Header Gradient ───────────────────────────────────────── */
-    .hero-header {
-        background: linear-gradient(135deg, rgba(255,107,53,0.15) 0%, rgba(255,107,53,0.02) 100%);
-        border: 1px solid rgba(255,107,53,0.2);
-        border-radius: 20px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-    .hero-header h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.3rem;
-    }
-    .hero-header .subtitle {
-        color: rgba(255,255,255,0.85);
-        font-size: 1.1rem;
-    }
-
-    /* ── Expander ───────────────────────────────────────────────── */
-    .streamlit-expanderHeader {
-        border-radius: 12px;
-        font-weight: 600;
-    }
-
-    /* ── Timer ──────────────────────────────────────────────────── */
-    .timer-display {
-        font-size: 4rem;
-        font-weight: 800;
-        text-align: center;
-        font-family: 'Courier New', monospace;
-        color: #FF6B35;
-        padding: 1rem;
-    }
-
-    /* ── Shopping List ──────────────────────────────────────────── */
-    .shopping-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .shopping-item .amount {
-        color: #FF6B35;
-        font-weight: 600;
-        min-width: 80px;
-    }
-
-    /* ── Notification dot ──────────────────────────────────────── */
-    .notification-dot {
-        display: inline-block;
+    
+    /* ==================== SCROLLBAR ==================== */
+    
+    ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
-        background: #e74c3c;
-        border-radius: 50%;
-        margin-left: 4px;
-        animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+    
+    ::-webkit-scrollbar-track {
+        background: #f5f5f0;
+        border-radius: 4px;
     }
-
-    /* ── Smooth scrolling ──────────────────────────────────────── */
-    html { scroll-behavior: smooth; }
-
-    /* ── Hide Streamlit branding ─────────────────────────────── */
-    #MainMenu { visibility: hidden; }
-    footer { visibility: hidden; }
-    header { visibility: hidden; }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #c0bbb0;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a0998a;
+    }
+    
+    /* ==================== LINKS ==================== */
+    
+    a {
+        color: #d35400 !important;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #e67e22 !important;
+        text-decoration: underline;
+    }
+    
+    /* ==================== DIVIDERS ==================== */
+    
+    hr {
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #d0ccc0, transparent);
+        margin: 24px 0;
+    }
+    
+    /* ==================== SIDEBAR NAVIGATION ==================== */
+    
+    [data-testid="stSidebarNav"] {
+        background-color: transparent;
+    }
+    
+    [data-testid="stSidebarNav"] a {
+        color: #333333 !important;
+        padding: 8px 16px;
+        border-radius: 8px;
+        margin: 2px 8px;
+    }
+    
+    [data-testid="stSidebarNav"] a:hover {
+        background-color: #f0ebe0 !important;
+    }
+    
+    [data-testid="stSidebarNav"] a[aria-selected="true"] {
+        background-color: #fef5e7 !important;
+        color: #d35400 !important;
+        font-weight: 600;
+    }
+    
+    /* ==================== FOOTER ==================== */
+    
+    footer {
+        color: #999999 !important;
+    }
+    
+    footer a {
+        color: #d35400 !important;
+    }
+    
+    /* Hide Streamlit branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    
     </style>
     """, unsafe_allow_html=True)
 
 
-def metric_card(label: str, value: str, delta: str = "", delta_positive: bool = True) -> str:
-    delta_html = ""
-    if delta:
-        cls = "positive" if delta_positive else "negative"
-        delta_html = f'<div class="metric-delta {cls}">{delta}</div>'
+def get_recipe_card_html(title, description, prep_time=None, category=None):
+    """Generate HTML for a recipe card with light theme"""
+    time_html = f'<span class="time-badge">⏱️ {prep_time} min</span>' if prep_time else ''
+    category_html = f'<span class="category-badge">{category}</span>' if category else ''
+    
+    return f"""
+    <div class="recipe-card">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <div style="margin-top: 12px;">
+            {time_html}
+            {category_html}
+        </div>
+    </div>
+    """
+
+
+def get_day_card_html(day_name, meal_info):
+    """Generate HTML for a day card in meal planning"""
+    return f"""
+    <div class="day-card">
+        <h4>{day_name}</h4>
+        <p>{meal_info}</p>
+    </div>
+    """
+
+
+def get_metric_card_html(value, label, icon=""):
+    """Generate HTML for a metric display card"""
     return f"""
     <div class="metric-card">
-        <div class="metric-value">{value}</div>
+        <div class="metric-value">{icon} {value}</div>
         <div class="metric-label">{label}</div>
-        {delta_html}
     </div>
     """
 
 
-def card(content: str, variant: str = "") -> str:
-    cls = f"card-{variant}" if variant else "card"
-    return f'<div class="{cls}">{content}</div>'
-
-
-def badge_html(text: str, variant: str = "") -> str:
-    cls = f"badge {variant}" if variant else "badge"
-    return f'<span class="{cls}">{text}</span>'
-
-
-def tag_html(text: str, dietary: bool = False) -> str:
-    cls = "tag dietary" if dietary else "tag"
-    return f'<span class="{cls}">{text}</span>'
-
-
-def stars_html(rating: float, small: bool = False) -> str:
-    full = int(rating)
-    empty = 5 - full
-    cls = "stars-small" if small else "stars"
-    return f'<span class="{cls}">{"★" * full}{"☆" * empty}</span>'
-
-
-def chat_message_html(author: str, text: str, time: str) -> str:
-    return f"""
-    <div class="chat-message">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span class="author">{author}</span>
-            <span class="time">{time}</span>
-        </div>
-        <div class="text">{text}</div>
-    </div>
-    """
-
-
-def activity_item_html(icon: str, text: str, time: str) -> str:
-    return f"""
-    <div class="activity-item">
-        <div class="activity-icon">{icon}</div>
-        <div class="activity-text">{text}</div>
-        <div class="activity-time">{time}</div>
-    </div>
-    """
-
-
-def roster_cell_html(chef: str = "", dish: str = "", assigned: bool = False) -> str:
-    cls = "roster-cell assigned" if assigned else "roster-cell empty"
-    if assigned:
-        return f"""
-        <div class="{cls}">
-            <div class="chef-name">{chef}</div>
-            <div class="dish-name">{dish if dish else '...'}</div>
-        </div>
-        """
-    return f'<div class="{cls}"><div class="dish-name">Vrij</div></div>'
-
-
-def leaderboard_row_html(rank: int, name: str, avatar: str, value: str, detail: str = "") -> str:
-    rank_cls = {1: "gold", 2: "silver", 3: "bronze"}.get(rank, "")
-    row_cls = {1: "first", 2: "second", 3: "third"}.get(rank, "")
-    medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(rank, str(rank))
-    return f"""
-    <div class="leaderboard-row {row_cls}">
-        <div class="rank {rank_cls}">{medal}</div>
-        <div style="font-size:1.5rem;">{avatar}</div>
-        <div style="flex:1;">
-            <div style="font-weight:600;">{name}</div>
-            <div style="font-size:0.8rem;color:rgba(255,255,255,0.75);">{detail}</div>
-        </div>
-        <div style="font-size:1.3rem;font-weight:700;color:#FF6B35;">{value}</div>
-    </div>
-    """
+def get_ingredient_tags_html(ingredients):
+    """Generate HTML for ingredient tags"""
+    tags = ''.join([f'<span class="ingredient-tag">{ing}</span>' for ing in ingredients])
+    return f'<div style="margin: 8px 0;">{tags}</div>'
