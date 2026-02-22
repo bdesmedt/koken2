@@ -1,9 +1,7 @@
 import streamlit as st
 import random
-from utils.styles import inject_custom_css
 
 st.set_page_config(page_title="Wie is dat Pokemon? - Kookrooster", page_icon="🎮", layout="wide")
-inject_custom_css()
 
 SPRITE_BASE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png"
 SPRITE_SHINY = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{id}.png"
